@@ -5,6 +5,10 @@ library's banners — Steam games and non-Steam shortcuts alike — with a smoot
 background glow that matches each banner's colors. A companion [Decky Loader](https://decky.xyz)
 plugin feeds it live data from Steam and exposes its settings in the Quick Access menu.
 
+The screensaver, the plugin, and this README were written by [Claude Code](https://claude.com/claude-code),
+directed by me (the repo owner) over a chat session — including the reverse-engineering of the
+stock screensaver's layout/timing via Chrome DevTools Protocol described below.
+
 It's two pieces that ship together:
 
 - `screensaver/ambient/` — the screensaver itself. Plain HTML/CSS/JS, no build step, lives under
@@ -37,11 +41,15 @@ places where it drifted from the original by accident.
 
 ## Install
 
-1. Copy `screensaver/ambient/` to
-   `~/.steam/root/config/uioverrides/screensavers/ambient/` on the Deck (create the
-   `uioverrides`/`screensavers` folders if they don't exist yet).
-2. Copy `plugin/` to `~/homebrew/plugins/ScreensaverAmbientColor/` (Decky Loader's plugins
-   folder). `plugin.json` and `package.json` need to end up owned by `root:root` — if a plain
+Grab [**AmbientScreensaver.zip**](https://github.com/d-beldy/ambient-screensaver/releases/latest)
+from the latest release and extract it — it contains two folders, already named and laid out
+for where they need to go:
+
+1. Copy `ambient/` to `~/.steam/root/config/uioverrides/screensavers/ambient/` on the Deck
+   (create the `uioverrides`/`screensavers` folders if they don't exist yet).
+2. Copy `ScreensaverAmbientColor/` to `~/homebrew/plugins/ScreensaverAmbientColor/` (Decky
+   Loader's plugins folder). `plugin.json` and `package.json` need to end up owned by `root:root`
+   — if a plain
    copy leaves them owned by your user, `sudo chown root:root` them, then
    `sudo systemctl restart plugin_loader.service`.
 3. In Gaming Mode: Decky menu → Plugins → enable **Screensaver Ambient Color**, and separately
