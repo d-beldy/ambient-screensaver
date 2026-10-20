@@ -20,8 +20,8 @@ stock screensaver's layout/timing via Chrome DevTools Protocol described below.
   <img src="docs/screenshots/mario-party-superstars.png" width="32%" />
 </p>
 
-(Citra and Prism Launcher are non-Steam shortcuts — not Steam games — showing up in the rotation
-like everything else.)
+(Citra, Prism Launcher, Hytale, and Mario Party Superstars are non-Steam shortcuts — not Steam
+games — showing up in the rotation like everything else.)
 
 It's two pieces that ship together:
 
