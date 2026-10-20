@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+    cursor: none;
+}
+#scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#ambient-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--ambient-color, black);
+    transition: background-color 1.2s ease;
+}
+/* Steam's own screensaver letterboxes the banner to a fixed 2:1 box centered in the
+   viewport, instead of stretching it to cover the full screen height. */
+#hero-frame {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50vw;
+    transform: translateY(-50%);
+}
+#hero-mask {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0)     0%,
+            rgba(0,0,0,0.262) 4.75%,
+            rgba(0,0,0,0.459) 8.5%,
+            rgba(0,0,0,0.618) 11.75%,
+            rgba(0,0,0,0.722) 14.125%,
+            rgba(0,0,0,0.806) 16.25%,
+            rgba(0,0,0,0.874) 18.25%,
+            rgba(0,0,0,0.925) 20.05%,
+            rgba(0,0,0,0.958) 21.525%,
+            rgba(0,0,0,0.979) 22.75%,
+            rgba(0,0,0,0.992) 23.8%,
+            rgba(0,0,0,0.998) 24.55%,
+            rgba(0,0,0,1)     25%,
+            rgba(0,0,0,1)     75%,
+            rgba(0,0,0,0.738) 79.75%,
+            rgba(0,0,0,0.541) 83.5%,
+            rgba(0,0,0,0.382) 86.75%,
+            rgba(0,0,0,0.278) 89.125%,
+            rgba(0,0,0,0.194) 91.25%,
+            rgba(0,0,0,0.126) 93.25%,
+            rgba(0,0,0,0.075) 95.05%,
+            rgba(0,0,0,0.042) 96.525%,
+            rgba(0,0,0,0.021) 97.75%,
+            rgba(0,0,0,0.008) 98.8%,
+            rgba(0,0,0,0.002) 99.55%,
+            rgba(0,0,0,0)     100%
+        ),
+        radial-gradient(
+            45% 60% at right top,
+            rgba(0,0,0,0)     0%,
+            rgba(0,0,0,0.262) 19%,
+            rgba(0,0,0,0.459) 34%,
+            rgba(0,0,0,0.618) 47%,
+            rgba(0,0,0,0.722) 56.5%,
+            rgba(0,0,0,0.806) 65%,
+            rgba(0,0,0,0.874) 73%,
+            rgba(0,0,0,0.925) 80.2%,
+            rgba(0,0,0,0.958) 86.1%,
+            rgba(0,0,0,0.979) 91%,
+            rgba(0,0,0,0.992) 95.2%,
+            rgba(0,0,0,0.998) 98.2%,
+            rgba(0,0,0,1)     100%
+        ),
+        radial-gradient(
+            45% 60% at left bottom,
+            rgba(0,0,0,0)     0%,
+            rgba(0,0,0,0.262) 19%,
+            rgba(0,0,0,0.459) 34%,
+            rgba(0,0,0,0.618) 47%,
+            rgba(0,0,0,0.722) 56.5%,
+            rgba(0,0,0,0.806) 65%,
+            rgba(0,0,0,0.874) 73%,
+            rgba(0,0,0,0.925) 80.2%,
+            rgba(0,0,0,0.958) 86.1%,
+            rgba(0,0,0,0.979) 91%,
+            rgba(0,0,0,0.992) 95.2%,
+            rgba(0,0,0,0.998) 98.2%,
+            rgba(0,0,0,1)     100%
+        );
+    mask-composite: intersect;
+}
+/* Two identical keyframes, alternated per image by main.js — restarting the same
+   animation-name on a reused element is a no-op in Chromium without a forced reflow, which
+   itself causes a visible stutter right as the crossfade starts. Alternating names sidesteps
+   both problems.
+   The curve itself (rise to a peak around 70%, then ease back down before the cut) is copied
+   from measuring the real default screensaver's own zoom live via CDP — it isn't a plain
+   linear zoom-in, which is why a linear curve looked like it "stopped dead" right as the next
+   banner faded in. */
+@keyframes kenburns-1 {
+    0%   { transform: scale( 1 ); }
+    70%  { transform: scale( 1.08 ); }
+    100% { transform: scale( 1.05 ); }
+}
+@keyframes kenburns-2 {
+    0%   { transform: scale( 1 ); }
+    70%  { transform: scale( 1.08 ); }
+    100% { transform: scale( 1.05 ); }
+}
+.hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--transition-duration, 1.5s) ease;
+    transform-origin: center;
+    /* animation-name and animation-duration are set inline per-image by main.js. */
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+.hero.visible {
+    opacity: 1;
+}
+/* Scale and bottom offset match the default screensaver's own logo (measured live via CDP,
+   across landscape-ish logos). max-width/max-height + auto/auto (not a flat width:12vw) so a
+   tall/portrait logo shrinks to fit instead of growing past its natural 12vw-width height and
+   getting clipped by the viewport's own overflow:hidden. Horizontal side is a setting —
+   align-left reproduces the default. */
+.logo {
+    position: absolute;
+    bottom: 3.5vw;
+    max-width: 12vw;
+    max-height: 12vw;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    transition: opacity var(--transition-duration, 1.5s) ease;
+}
+.logo.align-left {
+    left: 3.5vw;
+}
+.logo.align-center {
+    left: 50%;
+    transform: translateX( -50% );
+}
+.logo.align-right {
+    right: 3.5vw;
+}
+.logo.visible {
+    opacity: 1;
+}

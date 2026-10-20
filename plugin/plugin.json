@@ -1,0 +1,12 @@
+{
+  "name": "Screensaver Ambient Color",
+  "author": "you",
+  "flags": [],
+  "api_version": 1,
+  "version": "1.0.0",
+  "publish": {
+    "tags": ["theming", "screensaver"],
+    "description": "Builds a recently-played manifest (Steam + non-Steam) for the custom Ambient screensaver.",
+    "image": ""
+  }
+}
