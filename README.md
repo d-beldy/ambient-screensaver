@@ -9,6 +9,19 @@ The screensaver, the plugin, and this README were written by [Claude Code](https
 directed by me over a chat session — including the reverse-engineering of the
 stock screensaver's layout/timing via Chrome DevTools Protocol described below.
 
+<p>
+  <img src="docs/screenshots/rungore.png" width="32%" />
+  <img src="docs/screenshots/hytale.png" width="32%" />
+  <img src="docs/screenshots/citra.png" width="32%" />
+</p>
+<p>
+  <img src="docs/screenshots/dungeon-clawler.png" width="32%" />
+  <img src="docs/screenshots/prism-launcher.png" width="32%" />
+</p>
+
+(Citra and Prism Launcher are non-Steam shortcuts — not Steam games — showing up in the rotation
+like everything else.)
+
 It's two pieces that ship together:
 
 - `screensaver/ambient/` — the screensaver itself. Plain HTML/CSS/JS, no build step, lives under
