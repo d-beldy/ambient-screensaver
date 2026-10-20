@@ -6,7 +6,7 @@ background glow that matches each banner's colors. A companion [Decky Loader](ht
 plugin feeds it live data from Steam and exposes its settings in the Quick Access menu.
 
 The screensaver, the plugin, and this README were written by [Claude Code](https://claude.com/claude-code),
-directed by me (the repo owner) over a chat session — including the reverse-engineering of the
+directed by me over a chat session — including the reverse-engineering of the
 stock screensaver's layout/timing via Chrome DevTools Protocol described below.
 
 It's two pieces that ship together:
