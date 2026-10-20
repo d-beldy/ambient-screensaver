@@ -17,6 +17,7 @@ stock screensaver's layout/timing via Chrome DevTools Protocol described below.
 <p>
   <img src="docs/screenshots/dungeon-clawler.png" width="32%" />
   <img src="docs/screenshots/prism-launcher.png" width="32%" />
+  <img src="docs/screenshots/mario-party-superstars.png" width="32%" />
 </p>
 
 (Citra and Prism Launcher are non-Steam shortcuts — not Steam games — showing up in the rotation
